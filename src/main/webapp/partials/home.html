@@ -1,0 +1,56 @@
+<!-- Input Fields -->
+<div class="row" id="jarInputs" ng-show="goHomeFlag">
+    <div class="col-md-4"></div>
+    <div class="col-md-3 col-sm-12" id="inputFields">
+        <form name="form" role="form">
+            <div class="form-group">
+                <input type="file" class="filestyle" fileread="vm.uploadme" data-placeholder="No file*" data-buttonName="btn-primary" required> </div>
+            <div class="form-group">
+                <input type="email" placeholder="Enter Your Email*" class="form-control" id="email" name="email" ng-model="sendersEmail" required> 
+                <span style="color: white;" ng-show="form.email.$error.required && form.email.$dirty">Required</span> <span style="color: white;" ng-show="!form.email.$error.required && form.email.$error.email && form.email.$dirty">Invalid email</span>
+                </div>
+            <div class="form-group">
+                <input type="email" placeholder="Enter Receiver's Email*" class="form-control" id="receiversEmail" name="receiversEmail" ng-model="receiversEmail" required> </div>
+                <span style="color: white;" ng-show="form.receiversEmail.$error.required && form.receiversEmail.$dirty">Required</span> <span style="color: white;" ng-show="!form.receiversEmail.$error.required && form.receiversEmail.$error.email && form.receiversEmail.$dirty">Invalid email</span>
+            <div style="text-align:center">
+                <button type="button" class="btn btn-info btn-md" style="color:white;width:45%" ng-click="reset()">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-info btn-md" ng-disabled="form.$invalid" style="width:45%" ng-click="send(vm.uploadme)">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-5"> </div>
+</div>
+<!-- Success Alert -->
+<div class="row" id="successMessages" ng-show="successFlag">
+	<div class=col-md-3> </div>
+	<div class=col-md-6 col-sm-12> 
+		<div class="alert alert-success" role="alert">
+		<h4 class="alert-heading">Successfully Sent!</h4>
+			  <p>You have successfully uploaded the file. </p>
+			  <p>Download the File from <a ng-href={{downloadUrl}}>here</a></p>
+			  <p class="m-b-0">Note:Receiver have to download it within 24 Hours</p>
+			  <p><div><a href="#/try">Send Another</a></div></p>
+		</div>
+	</div>
+   	<div class=col-md-3> </div>
+</div>
+
+<!-- Error Alert -->
+<div class="row" id="errorMessages" ng-show="errorFlag">
+	<div class=col-md-3> </div>
+	<div class=col-md-6 col-sm-12> 
+		<div class="alert alert-danger" role="alert">
+		<h4 class="alert-heading">Failed to Upload</h4>
+			  <p>Please <a href="#/try">Try Again!</a></p>
+		</div>
+	</div>
+   	<div class=col-md-3> </div>
+</div>
+
+<!-- For Upload Field Styles -->
+<script>
+    $(":file").filestyle({
+        placeholder: "No file*"
+        , buttonName: "btn-info"
+    });
+</script>
